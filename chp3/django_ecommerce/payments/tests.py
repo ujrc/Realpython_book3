@@ -17,6 +17,7 @@ import unittest
 #         Tests that 1 + 1 always equals 2.
 #         """
 #         self.assertEqual(1 + 1, 2)
+
 class UserModelTest(TestCase):
     @classmethod
     def setUpClass(cls):
