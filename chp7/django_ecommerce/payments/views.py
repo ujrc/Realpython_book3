@@ -4,8 +4,9 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from payments.forms import SigninForm, CardForm, UserForm
-from payments.models import User
+from payments.models import User,UnpaidUsers
 import django_ecommerce.settings as settings
+from django.db import transaction
 import stripe
 import datetime
 import socket
@@ -48,7 +49,10 @@ def sign_in(request):
 
 
 def sign_out(request):
-    del request.session['user']
+    try:
+        del request.session['user']
+    except KeyError:
+        pass 
     return HttpResponseRedirect('/')
 
 
@@ -66,20 +70,25 @@ def register(request):
              )
             cd=form.cleaned_data
             try:
-                user=User.create(
-                 cd['name'],
-                 cd['email'],
-                 cd['password'],
-                 cd['last_4_digits'],
-                 #customer.id,
-                 stripe_id='',
-                                 )
-                if customer:
-                    user.stripe_id=customer.id
-                    user.save()
+                with transaction.atomic():
+                    user=User.create(
+                     cd['name'],
+                     cd['email'],
+                     cd['password'],
+                     cd['last_4_digits'],
+                     #customer.id,
+                     stripe_id='',
+                                     )
+                    if customer:
+                        user.stripe_id=customer.id
+                        user.save()
+                    else:
+                        UnpaidUsers(email='python@rocks.com').save()
 
             except IntegrityError:
-                form.addError(cd['email'] + ' is already a member')
+                import traceback
+                form.addError(cd['email'] + ' is already a member'+
+                traceback.format_exc())
                 user=None
             else:
                 request.session['user'] = user.pk

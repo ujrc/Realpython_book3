@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser
+from django.utils import timezone
 
 class User(AbstractBaseUser):
     name = models.CharField(max_length=255)
@@ -24,6 +25,13 @@ class User(AbstractBaseUser):
     @classmethod
     def get_by_id(cls,uid):
         return User.objects.get(pk=uid)
+
+    def __str__(self):
+        return self.email
+
+class UnpaidUsers(models.Model):
+    email=models.EmailField(max_length=255, unique=True)
+    last_notification= models.DateTimeField(default=timezone.now())
 
     def __str__(self):
         return self.email
