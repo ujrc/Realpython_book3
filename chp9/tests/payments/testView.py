@@ -39,7 +39,7 @@ class SignInPageTests(TestCase, ViewTesterMixin):
     def setUpClass(cls):
         super(SignInPageTests,cls).setUpClass()
         html = render_to_response(
-        'sign_in.html',
+        'payments/sign_in.html',
         {
         'form': SigninForm(),
         'user': None
@@ -74,7 +74,7 @@ class RegisterPageTests(TestCase,ViewTesterMixin):
     def setUpClass(cls):
         super(RegisterPageTests,cls).setUpClass()
         html=render_to_response(
-        'register.html',
+        'payments/register.html',
         {
         'form':UserForm(),
         'months':list(range(1,13)),
@@ -184,7 +184,7 @@ class RegisterPageTests(TestCase,ViewTesterMixin):
         expected_form.addError('python@rocks.com is already a member')
         #create the expected html
         html=render_to_response(
-        'register.html',
+        'payments/register.html',
         {
         'form':expected_form,
         'months':list(range(1,13)),
@@ -241,7 +241,7 @@ class RegisterPageTests(TestCase,ViewTesterMixin):
         'name':'pyRock',
         'stripe_token': '...',
         'last_4_digits':'4242',
-        'password':'bad_password',        
+        'password':'bad_password',
         'ver_password':'bad_password',
         }
         #mock out stripe and ask it to throw a connection error
