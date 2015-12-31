@@ -1,0 +1,12 @@
+{% load staticfiles %}
+<section class="row info-box text-center" id="badges">
+  <h1 id="achieve"> Achievements</h1>
+  {% for badge in badges %}
+  <div class="col-lg-4">
+    <h2>{{badge.name}}</h2>
+    <img src="{% static 'img/'|add:badge.image%}"
+    width="100" height="100" alt="{{badge.name}}">
+    <p>{{badge.description}}</p>
+  </div>
+  {% endfor %}
+</section>
