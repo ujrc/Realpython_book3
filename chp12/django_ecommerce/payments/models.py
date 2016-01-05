@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser
 from django.utils import timezone
 from main.models import Badge
-
+from datetime import datetime
 class User(AbstractBaseUser):
     name = models.CharField(max_length=255)
     email = models.CharField(max_length=255, unique=True)
@@ -13,13 +13,19 @@ class User(AbstractBaseUser):
     updated_at = models.DateTimeField(auto_now=True)
     rank=models.CharField(max_length=60, default="Padwan")
     badges=models.ManyToManyField(Badge)
+    bigCorpID=models.CharField(max_length=60)
     USERNAME_FIELD = 'email'
 
     @classmethod
-    def create(cls,name,email,password,last_4_digits,stripe_id):
+    def create(cls,name,email,password,last_4_digits,stripe_id=''):
         new_user=cls(name=name,email=email,
         last_4_digits=last_4_digits,stripe_id=stripe_id)
         new_user.set_password(password)
+
+        #set bigCorpID
+        new_user.bigCorpID = ("%s%s%s" %(new_user.name[:2],
+                            new_user.rank[:1],
+                            datetime.now().strftime("%Y%m%d%H%M%S%f"),))
         new_user.save()
         return new_user
 

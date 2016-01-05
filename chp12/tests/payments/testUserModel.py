@@ -7,8 +7,9 @@ class UserModelTest(TestCase):
     #def setUpTestDate(cls):
     def setUpClass(cls):
         super(UserModelTest,cls).setUpClass()
-        cls.test_user=User(email='j@j.com', name='test user')
-        cls.test_user.save()
+        cls.test_user=User.create(email='j@j.com', name='test user',
+        password="pass",last_4_digits="1234")
+        #cls.test_user.save()
 
     def test_user_to_string_print_email(self):
         self.assertEquals(str(self.test_user),'j@j.com')
@@ -18,8 +19,8 @@ class UserModelTest(TestCase):
         # self.assertEquals(User.get_by_id(1),self.test_user)
 
     def test_create_user_function_stores_in_database(self):
-        user=User.create('test','test@t.com','tt','1234','22')
-        self.assertEquals(User.objects.get(email='test@t.com'),user)
+        #user=User.create('test','test@t.com','tt','1234','22')
+        self.assertEquals(User.objects.get(email="j@j.com"), self.test_user)
 
     def test_create_user_already_exists_trhows_IntegrityError(self):
         self.assertRaises(IntegrityError,
