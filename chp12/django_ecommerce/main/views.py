@@ -13,33 +13,33 @@ class MarketItem(object):
         self.button_title=button_title
         self.button_link=button_link
 
-market_items=[
-
-    MarketItem(
-        img_name="yoda.jpg",
-        heading="Hone your Jedi Skills",
-        caption="All members have access to our unique \
-         training and achievements latters. Progress through the \
-        levels and show everyone who the top Jedi Master is!",
-        button_title="Sign Up Now"),
-
-    MarketItem(
-        img_name="clone_army.jpg",
-        heading="Build your Clan",
-        caption="Engage in meaningful conversation, or \
-        bloodthirsty battle! If it's related to \
-        Star Wars, in any way, you better believe we do it.",
-        button_title="Sign Up Now"),
-    MarketItem(
-        img_name="leia.jpg",
-        heading="Find Love",
-        caption="Everybody knows Star Wars fans are the \
-        best mates for Star Wars fans. Find your \
-        Princess Leia or Han Solo and explore the \
-        stars together.",
-        button_title="Sign Up Now"
-    ),
-    ]
+# market_items=[
+#
+#     MarketItem(
+#         img_name="yoda.jpg",
+#         heading="Hone your Jedi Skills",
+#         caption="All members have access to our unique \
+#          training and achievements latters. Progress through the \
+#         levels and show everyone who the top Jedi Master is!",
+#         button_title="Sign Up Now"),
+#
+#     MarketItem(
+#         img_name="clone_army.jpg",
+#         heading="Build your Clan",
+#         caption="Engage in meaningful conversation, or \
+#         bloodthirsty battle! If it's related to \
+#         Star Wars, in any way, you better believe we do it.",
+#         button_title="Sign Up Now"),
+#     MarketItem(
+#         img_name="leia.jpg",
+#         heading="Find Love",
+#         caption="Everybody knows Star Wars fans are the \
+#         best mates for Star Wars fans. Find your \
+#         Princess Leia or Han Solo and explore the \
+#         stars together.",
+#         button_title="Sign Up Now"
+#     ),
+#     ]
 
 def index(request):
     uid = request.session.get('user')

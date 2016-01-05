@@ -22,6 +22,7 @@ class Migration(migrations.Migration):
     dependencies = [
     ('payments', '0001_initial'),
     ]
-    erations = [
+
+    operations = [
     migrations.RunPython(create_default_user)
     ]
