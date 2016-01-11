@@ -1,0 +1,5 @@
+Envs
+*.pyc
+*.__pycache__
+*.py~
+*.py.bak

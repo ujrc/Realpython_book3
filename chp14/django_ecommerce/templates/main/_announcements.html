@@ -1,0 +1,17 @@
+<!-- system announcements -->
+ {% load staticfiles %} 
+{% load embed_video_tags %}
+<section class="info-box" id="announcements">
+  <h1>orders from the Council</h1>
+  {% for announce in announces %}
+  <div class="full-image">
+    {% if announce.vid %}
+    {% video announce.vid "medium" %}
+    {% else %}
+    <img src={% "static 'img/'|add:announce.image"} alt="">
+    {% endif %}
+  </div>
+  <div>{{announce.content}}</div>
+  <br>
+  {% endfor %}
+</section>
