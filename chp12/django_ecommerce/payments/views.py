@@ -44,9 +44,7 @@ def sign_in(request):
             'form': form,
             'user': user
         },
-        context_instance=RequestContext(request)
-    )
-
+        context_instance=RequestContext(request))
 
 def sign_out(request):
     try:
@@ -107,9 +105,7 @@ def register(request):
             'user': user,
             'years': list(range(2015, 2041)),
         },
-        context_instance=RequestContext(request)
-    )
-
+        context_instance=RequestContext(request))
 
 def edit(request):
     uid = request.session.get('user')
