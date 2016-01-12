@@ -2,17 +2,15 @@ from djangular_polls.serializers import PollSerializer,PollItemSerializer
 from djangular_polls.models import Poll,PollItem
 from rest_framework import generics,mixins
 
-class PollCollection(mixins.ListModelMixin,
-                    mixins.CreateModelMixin,
-                    generics.GenericAPIView):
+class PollCollection(generics.ListCreateAPIView):
     queryset=Poll.objects.all()
     serializer_class=PollSerializer
 
-    def get(self,request):
-        return self.list(request)
-
-    def post(self,request):
-        return self.create(request)
+    # def get(self,request):
+    #     return self.list(request)
+    #
+    # def post(self,request):
+    #     return self.create(request)
 
 class PollMember(mixins.RetrieveModelMixin,
                     mixins.UpdateModelMixin,
@@ -30,17 +28,15 @@ class PollMember(mixins.RetrieveModelMixin,
     def delete(self,request,*args,**kwargs):
         return self.destroy(request,*args,**kwargs)
 
-class PollItemCollection(mixins.ListModelMixin,
-                        mixins.CreateModelMixin,
-                        generics.GenericAPIView):
+class PollItemCollection(generics.ListCreateAPIView):
     queryset=PollItem.objects.all()
     serializer_class=PollItemSerializer
 
-    def get(self,request):
-        return self.list(request)
-
-    def post(self,request):
-        return self.create(request)
+    # def get(self,request):
+    #     return self.list(request)
+    #
+    # def post(self,request):
+    #     return self.create(request)
 
 class PollItemMember(mixins.RetrieveModelMixin,
                     mixins.UpdateModelMixin,

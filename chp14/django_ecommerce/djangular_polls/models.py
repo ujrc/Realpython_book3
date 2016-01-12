@@ -7,8 +7,9 @@ class Poll(models.Model):
 
     @property
     def total_votes(self):
-        return self.poll_items().aggregate(Sum('votes')).get('votes__sum',0)
-
+        return
+        self.poll_items().aggregate(Sum('votes')).get('votes__sum',
+        0)
 
     def poll_items(self):
         return self.items.all()
