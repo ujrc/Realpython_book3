@@ -10,6 +10,7 @@ url('../fonts/Starjedi.ttf') format('truetype'),
 url('../fonts/Starjedi.svg') format('svg');
 font-weight: normal;
 font-style: normal;
+}
 body {
 padding-bottom: 40px;
 background-color: #eee;
