@@ -4,6 +4,12 @@
 //   $interpolateProvider.startSymbol('[[')
 //     .endSymbol(']]');
 // });
+
+mecApp.config(function($interpolateProvider) {
+$interpolateProvider.startSymbol('[[')
+.endSymbol(']]');
+});
+
 mecApp.controller('UserPollCtrl', function($scope, pollFactory) {
   //get the Poll
   $scope.poll = ""
@@ -77,38 +83,38 @@ mecApp.factory('pollFactory', function($http,$filter) {
 //   return pollFactory;
 // });
 
-pollsApp.controller('UserPollCtrl', function($scope, pollFactory) {
-
-//get the Poll
-$scope.poll = ""
-
-function setPoll(promise) {
-  $scope.poll = promise.data;
-}
-
-function getPoll() {
-  return pollFactory.getPoll(1);
-}
-
-$scope.barcolor = function(i) {
-  var colors = ['progress-bar-success', 'progress-bar-info',
-    'progress-bar-warning', 'progress-bar-danger', ''
-  ]
-  var idx = i % colors.length;
-  return colors[idx];
-}
-
-getPoll().then(setPoll);
-
-$scope.vote = function(item) {
-  pollFactory.vote_for_item(item)
-    .then(getPoll)
-    .then(setPoll);
-}
-});
-
-
-// pollsApp.controller('UserPollCtrl', function($scope, $http) {
+// pollsApp.controller('UserPollCtrl', function($scope, pollFactory) {
+//
+// //get the Poll
+// $scope.poll = ""
+//
+// function setPoll(promise) {
+//   $scope.poll = promise.data;
+// }
+//
+// function getPoll() {
+//   return pollFactory.getPoll(1);
+// }
+//
+// $scope.barcolor = function(i) {
+//   var colors = ['progress-bar-success', 'progress-bar-info',
+//     'progress-bar-warning', 'progress-bar-danger', ''
+//   ]
+//   var idx = i % colors.length;
+//   return colors[idx];
+// }
+//
+// getPoll().then(setPoll);
+//
+// $scope.vote = function(item) {
+//   pollFactory.vote_for_item(item)
+//     .then(getPoll)
+//     .then(setPoll);
+// }
+// });
+//
+//
+// // pollsApp.controller('UserPollCtrl', function($scope, $http) {
 //       // Get the Poll
 //       $scope.poll = ""
 //
@@ -166,4 +172,4 @@ $scope.vote = function(item) {
 //     item["percent"] = item["votes"] / $scope.total_votes * 100;
 //   }
 // };
-});
+// });

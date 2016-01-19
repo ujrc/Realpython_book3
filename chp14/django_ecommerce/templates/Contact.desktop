@@ -1,0 +1,6 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Link to Contact
+Type=Link
+URL=file:///home/jearc/Desktop/Realpython_book3/chp14/django_ecommerce/templates/%7B%%20url%20'contact'%20%%7D
+Icon=text-html
